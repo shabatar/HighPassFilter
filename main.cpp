@@ -104,5 +104,11 @@ int main() {
     //abs(res1);
     normalize(res, res, 0, 1, CV_MINMAX);
 
-    imwrite("/Users/kata/Documents/data/res.jpg", res * 255);
+    // --- if you want threshold
+    res = res * 255;
+    Mat dst;
+    threshold( res, dst, 125, 250, CV_THRESH_BINARY );
+    // ---
+
+    imwrite("/Users/kata/Documents/data/res.jpg", dst);
 }
