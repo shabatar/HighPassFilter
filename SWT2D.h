@@ -11,30 +11,22 @@ using namespace std;
 
 enum MotherWavelet 
 {
-  /* Haar Wavelet */
   Haar,
-  
-  /* Dmeyer */
   
   Dmey,
   
-  /* Symmlets */
   Symm
 };
 
-/* I am terribly thankful for Timm Linder for modifying OpenCV's Filter2D function for Full 2d Convolution */
-
-enum ConvolutionType {   /* Return the full convolution, including border */
+enum ConvolutionType {
   CONVOLUTION_FULL,
-  /* Return only the part that corresponds to the original image */
   CONVOLUTION_SAME,
-  /* Return only the submatrix containing elements that were not influenced by the border */
   CONVOLUTION_VALID
 };
 
 
 
-void ExtendPeriod(const Mat &B, Mat &C, int level); // function prototype for add.h
+void ExtendPeriod(const Mat &B, Mat &C, int level);
 void conv2(const Mat &img, const Mat& kernel, ConvolutionType type, Mat& dest, int flipcode) ;
 void ExtendPeriod(const Mat &B, Mat &C, int level);
 void FilterBank(Mat &Kernel_High, Mat &Kernel_Low, MotherWavelet Type);
