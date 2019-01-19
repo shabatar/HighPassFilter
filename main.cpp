@@ -11,7 +11,7 @@ int WINDOW = 60;
 
 Mat abs(Mat m) { // abs from 2 channel image
     if (m.channels() != 2) {
-        throw std::runtime_error("Incorrect mat");
+        throw std::runtime_error("Incorrect input mat");
     }
 
     Mat result(m.rows, m.cols, CV_32F);
@@ -84,8 +84,12 @@ void processChannel(Mat f) {
     ifftshift(f);
 }
 
-int main() {
-    Mat inputImage = imread("/Users/kata/guy.png");
+int main(int argc, char** argv) {
+    if (argc < 2) {
+        cout << "Specify the image path as command line argument";
+        return -1;
+    }
+    Mat inputImage = imread(argv[1]);
     cvtColor(inputImage, inputImage, CV_BGR2GRAY);
 
     if (inputImage.empty())
@@ -110,5 +114,5 @@ int main() {
     threshold( res, dst, 125, 250, CV_THRESH_BINARY );
     // ---
 
-    imwrite("/Users/kata/Documents/data/res.jpg", dst);
+    imwrite(argv[1], dst);
 }
